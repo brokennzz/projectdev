@@ -110,7 +110,7 @@ col-12 col-md-6 col-lg-4
 1. Download or clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/projectdev.git
+git clone https://github.com/brokennzz/projectdev.git
 ```
 
 2. Open the project folder.
