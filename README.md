@@ -64,16 +64,18 @@ The website automatically adapts to different screen sizes, providing an optimiz
 
 ---
 
-📁  ProjectDeV
-│
+## 📁 Project Structure
+
+```bash
+ProjectDeV/
 ├── index.html
 ├── README.md
-│
-└── images
-    ├── home-page.png
-    ├── features-section.png
-    ├── grid-modal.png
-    └── mobile-view.png
+└── images/
+    ├── home-page.jpeg
+    ├── features-section.jpeg
+    ├── grid-modal.jpeg
+    └── mobile-view.jpeg
+```
 
 ---
 
