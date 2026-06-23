@@ -1,0 +1,542 @@
+*Página Responsiava com Bootstrap Grid 5* 
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProjectDeV | Engenharia de Software</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .navbar {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .navbar-brand span {
+      color: #60a5fa;
+    }
+
+    .nav-link {
+      position: relative;
+      margin: 0 8px;
+      color: #cbd5e1 !important;
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background: #60a5fa;
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .theme-btn {
+      border: 1px solid #60a5fa;
+      color: #dbeafe;
+      background: rgba(96, 165, 250, 0.12);
+    }
+
+    .theme-btn:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 90px;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(147, 51, 234, 0.32), transparent 35%),
+        #0f172a;
+    }
+
+    .typing {
+      color: #60a5fa;
+      border-right: 3px solid #60a5fa;
+      padding-right: 6px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(16px);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    .code-line {
+      color: #93c5fd;
+      font-family: Consolas, monospace;
+      margin-bottom: 10px;
+    }
+
+    .section-light {
+      background: #f8fafc;
+      color: #0f172a;
+      border-radius: 45px 45px 0 0;
+    }
+
+    .project-card {
+      border: none;
+      border-radius: 24px;
+      transition: 0.35s;
+      opacity: 0;
+      transform: translateY(35px);
+    }
+
+    .project-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .counter {
+      font-size: 42px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    .info-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    footer {
+      background: #020617;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 22px;
+    }
+
+    .modal-title,
+    .modal-body,
+    .modal-body p {
+      color: #0f172a !important;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .dark-mode {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .dark-mode .section-light {
+      background: #111827;
+      color: #e5e7eb;
+    }
+
+    .dark-mode .text-muted {
+      color: #cbd5e1 !important;
+    }
+
+    .dark-mode .card,
+    .dark-mode .list-group-item,
+    .dark-mode .info-box {
+      background: #1e293b;
+      color: #e5e7eb;
+      border-color: #334155;
+    }
+
+    .dark-mode .modal-content {
+      background: #1e293b;
+      color: #e5e7eb;
+      border: 1px solid #334155;
+    }
+
+    .dark-mode .modal-title,
+    .dark-mode .modal-body,
+    .dark-mode .modal-body p {
+      color: #e5e7eb !important;
+    }
+
+    .dark-mode .modal-header {
+      border-bottom: 1px solid #334155;
+    }
+
+    .dark-mode .btn-close {
+      filter: invert(1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#inicio">
+        Project<span>DeV</span>
+      </a>
+
+      <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#grid">Grid System</a></li>
+          <li class="nav-item"><a class="nav-link" href="#responsivo">Responsividade</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resumo">Resumo</a></li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <button class="btn theme-btn btn-sm rounded-pill px-3" id="themeBtn">
+              Tema escuro
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-12 col-lg-6">
+          <span class="badge text-bg-primary rounded-pill px-3 py-2 mb-3">
+            Engenharia de Software • Bootstrap 5
+          </span>
+
+          <h1 class="display-4 fw-bold">
+            Criando layouts <span class="typing" id="typingText"></span>
+          </h1>
+
+          <p class="lead text-light mt-3">
+            Página acadêmica desenvolvida com Bootstrap Grid, responsividade
+            e interações em JavaScript para melhorar a experiência do usuário.
+          </p>
+
+          <div class="d-flex gap-3 mt-4 flex-wrap">
+            <a href="#grid" class="btn btn-primary btn-lg rounded-pill px-4">Ver projeto</a>
+            <button class="btn btn-outline-light btn-lg rounded-pill px-4" id="infoBtn">
+              Explicar Grid
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="hero-card">
+            <h4 class="fw-bold mb-4">Estrutura utilizada</h4>
+
+            <div class="code-line">&lt;div class="container"&gt;</div>
+            <div class="code-line ms-3">&lt;div class="row g-4"&gt;</div>
+            <div class="code-line ms-4">&lt;div class="col-12 col-md-6 col-lg-4"&gt;</div>
+            <div class="code-line ms-5">Bootstrap Grid + JavaScript</div>
+            <div class="code-line ms-4">&lt;/div&gt;</div>
+            <div class="code-line ms-3">&lt;/div&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="section-light py-5">
+
+    <section class="container py-5" id="grid">
+      <div class="text-center mb-5">
+        <span class="badge text-bg-primary rounded-pill px-3 py-2 mb-3">Atividade prática</span>
+        <h2 class="fw-bold display-6">Conceitos aplicados</h2>
+        <p class="text-muted">Sistema de grid, breakpoints e comportamento responsivo.</p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card project-card shadow h-100 p-4">
+            <div class="icon-box">01</div>
+            <h4 class="fw-bold">Containers</h4>
+            <p>Organizam o conteúdo e mantêm o alinhamento da página em diferentes tamanhos de tela.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card project-card shadow h-100 p-4">
+            <div class="icon-box">02</div>
+            <h4 class="fw-bold">Colunas</h4>
+            <p>Dividem o conteúdo em blocos flexíveis, permitindo uma organização clara e responsiva.</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card project-card shadow h-100 p-4">
+            <div class="icon-box">03</div>
+            <h4 class="fw-bold">Breakpoints</h4>
+            <p>Controlam como o layout se adapta entre celulares, tablets e computadores.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="container pb-5" id="responsivo">
+      <div class="row align-items-center g-4">
+
+        <div class="col-12 col-lg-6">
+          <h2 class="fw-bold">Comportamento responsivo</h2>
+          <p class="text-muted">
+            O layout utiliza a lógica mobile-first, adaptando a quantidade de colunas
+            conforme o tamanho da tela.
+          </p>
+
+          <ul class="list-group shadow rounded-4">
+            <li class="list-group-item p-3"><strong>Celular:</strong> uma coluna por linha usando col-12.</li>
+            <li class="list-group-item p-3"><strong>Tablet:</strong> duas colunas por linha usando col-md-6.</li>
+            <li class="list-group-item p-3"><strong>Desktop:</strong> três colunas lado a lado usando col-lg-4.</li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="row g-3 text-center">
+            <div class="col-12 col-md-4">
+              <div class="card shadow p-3 rounded-4">
+                <div class="counter" data-target="12">0</div>
+                <p class="mb-0">colunas</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card shadow p-3 rounded-4">
+                <div class="counter" data-target="3">0</div>
+                <p class="mb-0">breakpoints</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card shadow p-3 rounded-4">
+                <div class="counter" data-target="100">0</div>
+                <p class="mb-0">% responsivo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="container pb-5" id="resumo">
+      <div class="info-box shadow">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-8">
+            <h2 class="fw-bold">Resumo técnico do projeto</h2>
+            <p class="text-muted mb-0">
+              Este projeto utiliza Bootstrap 5 via CDN, estrutura semântica com header,
+              main, section e footer, sistema de grid responsivo, componentes visuais,
+              animações com JavaScript, modal explicativo e alternância de tema.
+            </p>
+          </div>
+
+          <div class="col-12 col-lg-4 text-lg-end">
+            <button class="btn btn-primary rounded-pill px-4" id="infoBtn2">
+              Ver explicação
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center text-white py-4">
+    <p class="mb-1">Desenvolvido com Bootstrap 5 + JavaScript</p>
+    <small>Projeto Acadêmico feito por Maicon Almeida — Engenharia de Software</small>
+  </footer>
+
+  <div class="modal fade" id="gridModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Como funciona o Bootstrap Grid?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <p>
+            O Bootstrap Grid divide a tela em até 12 colunas. Com classes como
+            <strong>col-12</strong>, <strong>col-md-6</strong> e
+            <strong>col-lg-4</strong>, é possível criar layouts responsivos
+            para celulares, tablets e desktops.
+          </p>
+
+          <p class="mb-0">
+            Neste projeto, as colunas ficam empilhadas no celular, aparecem em duas
+            por linha no tablet e em três colunas no desktop.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const words = ["responsivos", "modernos", "adaptáveis"];
+      let wordIndex = 0;
+      let charIndex = 0;
+      const typingText = document.getElementById("typingText");
+
+      function typeEffect() {
+        if (!typingText) return;
+
+        if (charIndex < words[wordIndex].length) {
+          typingText.textContent += words[wordIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeEffect, 120);
+        } else {
+          setTimeout(eraseEffect, 1400);
+        }
+      }
+
+      function eraseEffect() {
+        if (charIndex > 0) {
+          typingText.textContent = words[wordIndex].substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(eraseEffect, 60);
+        } else {
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(typeEffect, 300);
+        }
+      }
+
+      typeEffect();
+
+      const cards = document.querySelectorAll(".project-card");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+
+      cards.forEach((card) => observer.observe(card));
+
+      const counters = document.querySelectorAll(".counter");
+      let countersStarted = false;
+
+      function startCounters() {
+        if (countersStarted) return;
+        countersStarted = true;
+
+        counters.forEach((counter) => {
+          const updateCounter = () => {
+            const target = Number(counter.getAttribute("data-target"));
+            const current = Number(counter.innerText);
+            const increment = Math.ceil(target / 40);
+
+            if (current < target) {
+              counter.innerText = current + increment;
+              setTimeout(updateCounter, 35);
+            } else {
+              counter.innerText = target;
+            }
+          };
+
+          updateCounter();
+        });
+      }
+
+      const responsiveSection = document.getElementById("responsivo");
+
+      if (responsiveSection) {
+        const counterObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            startCounters();
+          }
+        }, {
+          threshold: 0.3
+        });
+
+        counterObserver.observe(responsiveSection);
+      }
+
+      const themeBtn = document.getElementById("themeBtn");
+
+      if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+          document.body.classList.toggle("dark-mode");
+
+          if (document.body.classList.contains("dark-mode")) {
+            themeBtn.textContent = "Tema claro";
+          } else {
+            themeBtn.textContent = "Tema escuro";
+          }
+        });
+      }
+
+      const modalElement = document.getElementById("gridModal");
+      const gridModal = modalElement ? new bootstrap.Modal(modalElement) : null;
+
+      const infoBtn = document.getElementById("infoBtn");
+      const infoBtn2 = document.getElementById("infoBtn2");
+
+      if (infoBtn && gridModal) {
+        infoBtn.addEventListener("click", () => {
+          gridModal.show();
+        });
+      }
+
+      if (infoBtn2 && gridModal) {
+        infoBtn2.addEventListener("click", () => {
+          gridModal.show();
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
