@@ -76,6 +76,21 @@ ProjectDeV/
     ├── grid-modal.jpeg
     └── mobile-view.jpeg
 ```
+---
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](images/home-page.jpeg)
+
+### Features Section
+![Features Section](images/features-section.jpeg)
+
+### Grid Modal
+![Grid Modal](images/grid-modal.jpeg)
+
+### Mobile View
+![Mobile View](images/mobile-view.jpeg)
 
 ---
 
